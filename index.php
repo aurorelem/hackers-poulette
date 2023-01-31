@@ -1,3 +1,14 @@
+<?php
+session_start();  //initialiser une session avec la fonction "session_start()"
+//put my link to the validator file => include '';
+include('connexion.php');
+include('error.php');
+
+/*if(isset($_POST['submit']) && empty($_POST['name']) && empty($_POST['email'])){    
+*    $comm = new Commentvalidator(['fullName','fullFirstame', 'fullEmail', 'fullComment'], $_POST);
+*    $com = $com->validate();
+*}*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,69 +16,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index.php</title>
+    <link rel="stylesheet" href="../assets/style/css">
+    <link rel="stylesheet" href="../assets/style/scss">
+    <title>Hackers Poulette ™ - Contact us</title>
 </head>
 
 <body>
-    <?php
-// define variables and set to empty values
-$nameErr = $firstnameErr = $emailErr = $commentErr = "";
-$name = $firstname = $email  = $comment = "";
+    <h1>Contact us!</h1>
+    <span class="error">* required field</span>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> >
+        <!-- Vérifier si c'est bon action = ""-->
 
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Checking the name  
-  if (empty($_POST["name"])) {
-    $nameErr = "Name is required";
-  } else {
-    $name = test_input($_POST["name"]);
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z-' ]{2,255}$/",$name)) {
-        $nameErr = "Only letters and white space allowed";
-      }
-  }
-  
-  // Checking the firstname 
-  if (empty($_POST["firstname"])) {
-    $firstnameErr = "Firstname is required";
-  } else {
-    $firstname = test_input($_POST["firstName"]);
-    // check if firstname only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z-' ]{2,255}/",$firstname)) {
-        $firstnameErr = "Only letters and white space allowed";
-      }
-  }
-  
-  // Checking the email 
-  if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
-  } else {
-    $email = test_input($_POST["email"]);
-    // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
-      }
-  }
-  
-  // Checking the comment 
-  if (empty($_POST["comment"])) {
-    $comment = "";
-  } else {
-    $comment = test_input($_POST["comment"]);
-    if (!preg_match("/^.{255,1000}$/", $string))
-        $commentErr = "Minimum 250 characters is required";
-    }
-  }
-  
-  function test_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name"
+            title="Please enter your name with at least 2 characters and maximum 255 characters." />
+        <span class="error">* <br><?php echo $nameErr;?></span>
+        <br><br>
 
-?>
+        <label for="firstname">Your firstname:</label><br>
+        <input type="text" name="firstname" id="firstname"
+            title="Please enter a valid first name address with at least 2 characters and maximum 255 characters." />
+        <span class="error">* <br><?php echo $firstnameErr;?></span>
+        <br><br>
+
+        <label for="email">E-mail:</label><br>
+        <input type="email" name="email" id="email"
+            title="Please enter a valid email address with at least 2 characters and maximum 255 characters." />
+        <span class="error">* <br><?php echo $emailErr;?></span>
+        <br><br>
+
+        <label for="comment">Comment:</label><br>
+        <textarea name="comment" id="comment" rows="10" cols="55" name="comment" id="comment"
+            title="Please enter your comment with at least 250 characters and maximum 1000 characters."></textarea>
+        <span class="error">* <br><?php echo $commentErr;?></span>
+        <br><br>
+        <label for="submit">
+            <input type="submit" name="submit" id="submit">
+        </label>
+    </form>
 </body>
 
 </html>
