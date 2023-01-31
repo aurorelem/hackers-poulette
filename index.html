@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact support form for Hackers Poulette ™</title>
+  </head>
+  <body>
+    <form method="post" action="index.php"> <!-- Vérifier si c'est bon-->
+
+      <label for="fullName">Name</label>
+      <input  
+        type="text" 
+        minlength="2" 
+        maxlength="255" 
+        name="name" 
+        id="fullName" 
+        title="Please enter your name with at least 2 characters and maximum 255 characters."/>
+      <br><br>
+    
+      <label for="fullFirstname">Firstname</label>
+      <input 
+        type="text" 
+        minlength="2" 
+        maxlength="255" 
+        name="firstname" 
+        id="fullFirstname" 
+        title="Please enter a valid first name address with at least 2 characters and maximum 255 characters."/>
+      <br><br>
+
+      <label for="fullEmail">Email address</label>
+      <input 
+        type="email" 
+        minlength="2" 
+        maxlength="255" 
+        name="email" 
+        id="fullEmail" 
+        title="Please enter a valid email address with at least 2 characters and maximum 255 characters."/>
+      <br><br>
+
+      <label for="fullComment">Comment</label>
+      <textarea name="comment" id="fullComment" rows="5" cols="40"
+        minlength="250" 
+        maxlength="1000" 
+        name="comment" 
+        id="fullComment" 
+        title="Please enter your comment with at least 250 characters and maximum 1000 characters."></textarea>
+      <br><br>
+      <label for="submit">
+          <input type="submit" name="submit" id="submit">
+      </label>
+    </form>
+  </body>
+</html>
